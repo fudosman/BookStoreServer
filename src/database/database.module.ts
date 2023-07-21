@@ -1,4 +1,3 @@
-// database/database.module.ts
 import { Module, OnModuleInit } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 

@@ -3,57 +3,81 @@ import {
   Get,
   Post,
   Body,
+  Res,
   Param,
   Put,
   Delete,
   Query,
 } from '@nestjs/common';
+import { Response } from 'express';
+
 import { CreateBookDto, GetAllBooksQueryDto, UpdateBookDto } from './dto';
+
 import { BookService } from './books.service';
 
-@Controller()
+@Controller('books')
 export class BookController {
   constructor(private readonly bookService: BookService) {}
 
-  @Post('books')
-  async createBook(@Body() createBookDto: CreateBookDto) {
+  @Post()
+  async createBook(@Body() createBookDto: CreateBookDto, @Res() res: Response) {
     const book = await this.bookService.createOne(createBookDto);
 
-    return `This action adds a new book, ${JSON.stringify(book)}`;
+    return res.status(201).json({
+      success: true,
+      message: 'Book created successfully',
+      book: book,
+    });
   }
 
-  @Get('books')
-  async findAllBooks(@Query() query: GetAllBooksQueryDto) {
+  @Get()
+  async findAllBooks(
+    @Query() query: GetAllBooksQueryDto,
+    @Res() res: Response,
+  ) {
     const books = await this.bookService.findAll(query);
 
-    return `This action returns all books matching the query, ${JSON.stringify(
-      query,
-    )}: ${JSON.stringify(books)}`;
+    return res.status(200).json({
+      success: true,
+      message: 'Books successfully retrieved',
+      books,
+    });
   }
 
-  @Get('books/:id')
-  async findOneBook(@Param('id') id: string) {
+  @Get(':id')
+  async findOneBook(@Param('id') id: string, @Res() res: Response) {
     const book = await this.bookService.findOne(id);
 
-    return `This action returns a #${id} book: ${JSON.stringify(book)}`;
+    return res.status(200).json({
+      success: true,
+      message: `Book with id: ${id} successfully retrieved`,
+      book,
+    });
   }
 
-  @Put('books/:id')
+  @Put(':id')
   async updateBook(
     @Param('id') id: string,
     @Body() updateBookDto: UpdateBookDto,
+    @Res() res: Response,
   ) {
     const book = await this.bookService.updateOne(id, updateBookDto);
 
-    return `This action updates a #${id} book with the following data, ${JSON.stringify(
-      updateBookDto,
-    )}: ${JSON.stringify(book)}`;
+    return res.status(200).json({
+      success: true,
+      message: `Book with id: ${id} successfully updated`,
+      book,
+    });
   }
 
-  @Delete('books/:id')
-  async deleteBook(@Param('id') id: string) {
+  @Delete(':id')
+  async deleteBook(@Param('id') id: string, @Res() res: Response) {
     const book = await this.bookService.deleteOne(id);
 
-    return `This action deletes a #${id} book: ${JSON.stringify(book)}`;
+    return res.status(200).json({
+      success: true,
+      message: `Book with id: ${id} successfully deleted`,
+      book,
+    });
   }
 }
