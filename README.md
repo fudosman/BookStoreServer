@@ -122,13 +122,14 @@ This document provides an overview of the available API endpoints and their func
 - **Description:** Updates the details of a specific book using its ID.
 - **Request Body:** JSON object with the book details to be updated.
 
-```{
+```json {
   "title": "Updated Book Title",
   "author": "Updated Author Name",
   "genre": "Updated Genre",
   "price": 24.99,
   "availability": false
-}```
+}
+```
 
 ## Delete a Single Book
 
@@ -142,10 +143,12 @@ This document provides an overview of the available API endpoints and their func
 - **URL:** `http://localhost:3000/books`
 - **Description:** Creates a new book with the provided details.
 - **Request Body:** JSON object with the new book details.
-``` {
+
+```json {
   "title": "Book Title",
   "author": "Author Name",
   "genre": "Fiction",
   "price": 19.99,
   "availability": true
-}```
+}
+```
