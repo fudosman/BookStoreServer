@@ -1,75 +1,118 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Bookstore API Project
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This is a project to design and implement a RESTful API for an online bookstore using NestJS and MongoDB. The API will allow CRUD operations for managing books, each with properties such as title, author, genre, price, and availability. The project will also implement pagination and filtering options for fetching books. Additionally, there is a bonus task to implement email notifications when a user creates a book.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Requirements
 
-## Description
+To run this project, you need to have the following installed:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Node.js
+- NestJS
+- MongoDB
+- Docker (for containerization)
 
-## Installation
+## Getting Started
 
-```bash
-$ yarn install
-```
+1. Clone the repository to your local machine.
+2. Install dependencies using `npm install`.
+3. Start the application using `npm run start:dev`.
+4. The application will be accessible at `http://localhost:3000`.
 
-## Running the app
+## The project includes a Dockerfile that defines the Docker image for the application. To containerize the application, follow these steps
 
-```bash
-# development
-$ yarn run start
+**Build the Docker image:**
 
-# watch mode
-$ yarn run start:dev
+docker build -t bookstore-api .
 
-# production mode
-$ yarn run start:prod
-```
+**Run the Docker container:**
 
-## Test
+docker run -p 3000:3000 -d bookstore-api
 
-```bash
-# unit tests
-$ yarn run test
+The application will be accessible at <http://localhost:3000>.
 
-# e2e tests
-$ yarn run test:e2e
+## API Endpoints
 
-# test coverage
-$ yarn run test:cov
-```
+The following API endpoints are available for managing books:
 
-## Support
+1. **Create Book**
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+   - Method: POST
+   - URL: `/books`
+   - Description: Creates a new book with the provided details.
+   - Request Body: JSON object with the book details (title, author, genre, price, availability).
 
-## Stay in touch
+2. **Get All Books**
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+   - Method: GET
+   - URL: `/books`
+   - Description: Retrieves a paginated list of all books.
+   - Parameters:
+     - `page`: Query parameter (number) for the page number.
+     - `perPage`: Query parameter (number) for the number of items per page.
+     - `availability`: Query parameter (boolean) to filter books by their availability.
 
-## License
+3. **Get Single Book**
 
-Nest is [MIT licensed](LICENSE).
-# BookStoreServer
-# BookStoreServer
+   - Method: GET
+   - URL: `/books/:id`
+   - Description: Fetches the details of a specific book using its ID.
+
+4. **Update Book**
+
+   - Method: PUT
+   - URL: `/books/:id`
+   - Description: Updates the details of a specific book using its ID.
+   - Request Body: JSON object with the book details to be updated.
+
+5. **Delete Book**
+
+   - Method: DELETE
+   - URL: `/books/:id`
+   - Description: Deletes a specific book using its ID.
+
+## API Documentation for Books Application
+
+This document provides an overview of the available API endpoints and their functionalities for the "Books" application. The API allows users to manage books and in the system.
+
+## Get All Books with Query
+
+- **Method:** GET
+- **URL:** `http://localhost:3000/books?availability=false`
+- **Description:** Retrieves a list of all books with the availability set to `false`.
+- **Parameters:**
+  - `availability`: Query parameter (boolean) to filter books by their availability.
+
+## Get All Books with Pagination
+
+- **Method:** GET
+- **URL:** `http://localhost:3000/books?page=2&perPage=1`
+- **Description:** Retrieves a paginated list of all books.
+- **Parameters:**
+  - `page`: Query parameter (number) for the page number.
+  - `perPage`: Query parameter (number) for the number of items per page.
+
+## Get a Single Book
+
+- **Method:** GET
+- **URL:** `http://localhost:3000/books/64ba9923f181ea917cc2ed57`
+- **Description:** Fetches the details of a specific book using its ID.
+
+## Update a Single Book
+
+- **Method:** PUT
+- **URL:** `http://localhost:3000/books/64ba9923f181ea917cc2ed57`
+- **Description:** Updates the details of a specific book using its ID.
+- **Request Body:** JSON object with the book details to be updated.
+
+## Delete a Single Book
+
+- **Method:** DELETE
+- **URL:** `http://localhost:3000/books/64ba995ff181ea917cc2ed5a`
+- **Description:** Deletes a specific book using its ID.
+
+## Create Book
+
+- **Method:** POST
+- **URL:** `http://localhost:3000/books`
+- **Description:** Creates a new book with the provided details.
+- **Request Body:** JSON object with the new book details.
