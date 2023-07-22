@@ -122,7 +122,8 @@ This document provides an overview of the available API endpoints and their func
 - **Description:** Updates the details of a specific book using its ID.
 - **Request Body:** JSON object with the book details to be updated.
 
-```json {
+```json
+{
   "title": "Updated Book Title",
   "author": "Updated Author Name",
   "genre": "Updated Genre",
@@ -144,7 +145,8 @@ This document provides an overview of the available API endpoints and their func
 - **Description:** Creates a new book with the provided details.
 - **Request Body:** JSON object with the new book details.
 
-```json {
+```json
+{
   "title": "Book Title",
   "author": "Author Name",
   "genre": "Fiction",
