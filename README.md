@@ -85,6 +85,23 @@ The following API endpoints are available for managing books:
 
 This document provides an overview of the available API endpoints and their functionalities for the "Books" application. The API allows users to manage books and in the system.
 
+## Create Book
+
+- **Method:** POST
+- **URL:** `http://localhost:3000/books`
+- **Description:** Creates a new book with the provided details.
+- **Request Body:** JSON object with the new book details.
+
+```json
+{
+  "title": "Book Title",
+  "author": "Author Name",
+  "genre": "Fiction",
+  "price": 19.99,
+  "availability": true
+}
+```
+
 ## Get All Books with Query
 
 - **Method:** GET
@@ -130,20 +147,3 @@ This document provides an overview of the available API endpoints and their func
 - **Method:** DELETE
 - **URL:** `http://localhost:3000/books/64ba995ff181ea917cc2ed5a`
 - **Description:** Deletes a specific book using its ID.
-
-## Create Book
-
-- **Method:** POST
-- **URL:** `http://localhost:3000/books`
-- **Description:** Creates a new book with the provided details.
-- **Request Body:** JSON object with the new book details.
-
-```json
-{
-  "title": "Book Title",
-  "author": "Author Name",
-  "genre": "Fiction",
-  "price": 19.99,
-  "availability": true
-}
-```
