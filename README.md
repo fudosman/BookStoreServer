@@ -16,14 +16,7 @@ Before running the application, you need to set up the MongoDB connection. Follo
 
 Install MongoDB on your machine or use a remote MongoDB service.
 Create a new MongoDB database for the bookstore application.
-Update the connection URL in the application's configuration file (src/config/database.config.ts) to point to your MongoDB instance.
-typescript
-Copy code
-// src/config/database.config.ts
-
-export default {
-  mongoURI: 'mongodb://localhost:27017/bookstore', // Update this URL with your MongoDB connection
-};
+Update the connection URL in the `database.module.ts` file inside the `Database` folder, to point to your MongoDB atlas instance, or to the instance on your local machihne.
 
 ## Getting Started
 
