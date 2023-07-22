@@ -11,6 +11,20 @@ To run this project, you need to have the following installed:
 - MongoDB
 - Docker (for containerization)
 
+MongoDB Connection Configuration
+Before running the application, you need to set up the MongoDB connection. Follow these steps:
+
+Install MongoDB on your machine or use a remote MongoDB service.
+Create a new MongoDB database for the bookstore application.
+Update the connection URL in the application's configuration file (src/config/database.config.ts) to point to your MongoDB instance.
+typescript
+Copy code
+// src/config/database.config.ts
+
+export default {
+  mongoURI: 'mongodb://localhost:27017/bookstore', // Update this URL with your MongoDB connection
+};
+
 ## Getting Started
 
 1. Clone the repository to your local machine.
@@ -18,15 +32,19 @@ To run this project, you need to have the following installed:
 3. Start the application using `npm run start:dev`.
 4. The application will be accessible at `http://localhost:3000`.
 
-## The project includes a Dockerfile that defines the Docker image for the application. To containerize the application, follow these steps
+## Docker
+
+The project includes a Dockerfile that defines the Docker image for the application. To containerize the application, follow these steps
+
+Docker provides a lightweight and consistent environment for running applications, ensuring that the application behaves the same in development, testing, and production environments. It simplifies the deployment process by packaging the application and its dependencies into a container, making it easy to move and run across different platforms. With Docker, you can scale your application easily by running multiple containers on the same host or distributing them across multiple hosts using orchestration tools like Kubernetes.
 
 **Build the Docker image:**
 
-docker build -t bookstore-api .
+``` docker build -t bookstore-api . ```
 
 **Run the Docker container:**
 
-docker run -p 3000:3000 -d bookstore-api
+```docker run -p 3000:3000 -d bookstore-api```
 
 The application will be accessible at <http://localhost:3000>.
 
@@ -104,6 +122,14 @@ This document provides an overview of the available API endpoints and their func
 - **Description:** Updates the details of a specific book using its ID.
 - **Request Body:** JSON object with the book details to be updated.
 
+```{
+  "title": "Updated Book Title",
+  "author": "Updated Author Name",
+  "genre": "Updated Genre",
+  "price": 24.99,
+  "availability": false
+}```
+
 ## Delete a Single Book
 
 - **Method:** DELETE
@@ -116,3 +142,10 @@ This document provides an overview of the available API endpoints and their func
 - **URL:** `http://localhost:3000/books`
 - **Description:** Creates a new book with the provided details.
 - **Request Body:** JSON object with the new book details.
+``` {
+  "title": "Book Title",
+  "author": "Author Name",
+  "genre": "Fiction",
+  "price": 19.99,
+  "availability": true
+}```
